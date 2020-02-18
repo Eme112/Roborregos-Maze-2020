@@ -1,4 +1,17 @@
 #include "Control.h"
+#include <NewPing.h>
+
+#define SONAR_NUM 6      // Number of sensors.
+#define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
+
+NewPing sonar[SONAR_NUM] = {   // Sensor object array.
+  NewPing(4, 5, MAX_DISTANCE), // Each sensor's trigger pin, echo pin, and max distance to ping. 
+  NewPing(6, 7, MAX_DISTANCE), 
+  NewPing(8, 9, MAX_DISTANCE), 
+  NewPing(4, 5, MAX_DISTANCE), 
+  NewPing(6, 7, MAX_DISTANCE), 
+  NewPing(6, 7, MAX_DISTANCE)
+};
 
 LiquidCrystal_I2C lcd(0x27,20,4);
 
@@ -187,26 +200,33 @@ void Control::getPwm(double &vel) {
 }
 
 double Control::getDistanceFrontLeft() {
-  
+  delay(50);
+  return sonar[0].ping_cm();
 }
+
 double Control::getDistanceFrontRight() {
-  
+  delay(50);
+  return sonar[1].ping_cm();
 }
 
 double Control::getDistanceRightUp() {
-  
+  delay(50);
+  return sonar[2].ping_cm();
 }
 
 double Control::getDistanceRightDown() {
-  
+  delay(50);
+  return sonar[3].ping_cm();
 }
 
 double Control::getDistanceLeftUp() {
-  
+  delay(50);
+  return sonar[4].ping_cm();
 }
 
 double Control::getDistanceLeftDown() {
-  
+  delay(50);
+  return sonar[5].ping_cm(); 
 }
 
 bool Control::checkWallsRight() {
