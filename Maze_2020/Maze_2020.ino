@@ -2,10 +2,11 @@
 Control robot;
 
 void setup() {
+  Serial.begin(9600);
   robot.orientationStatus();
-  robot.CalibrationAll();
+  robot.calibrationAll();
 }
 
 void loop() {
-  robot.giroGrados(robot.E);
+  robot.turnDegrees(robot.E);
 }
