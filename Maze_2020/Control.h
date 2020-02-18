@@ -1,10 +1,11 @@
 #ifndef CONTROL_H
 #define CONTROL_H
-// Roborregos 2020.
-// This control class it was made for the purpose to 
-// have a better control of the robot, it is function 
-// is to move the robot with precision
-// also calibrates all robot sensors.
+/* Roborregos 2020.
+ * This control class it was made for the purpose to 
+ * have a better control of the robot, it is function 
+ * is to move the robot with precision
+ * also calibrates all robot sensors.
+*/
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
@@ -152,12 +153,4 @@ class Control {
      Adafruit_BNO055 bno; 
      Servo dispenser; 
 };
-
-/*
-git status // checas lo que ha cambiado
-git add . // agregas todo lo que has cambiado (eso significa el punto, todo)
-git commit -m "Mensaje"
-git push [nombre de branch]
-
-*/
 #endif
