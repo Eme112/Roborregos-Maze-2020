@@ -60,7 +60,7 @@ class Control {
     bool checkWallsLeft();
     
     // Move the robot to the forward.   
-    void advance(const double desire, const double desireUltrasonicEstimaci´on puntual e intervalos estad´ısticos basados en una sola muestra);
+    void advance(const double desire, const double desireUltrasonic);
     // Turn the robot to 90 degrees to the left.
     void turnLeft(const uint8_t vel);
     // Turn the robot to 90 degrees to the right.

@@ -99,19 +99,19 @@ void Control::calibrationAll() {
 }
 
 double Control::getDifferenceWithZero() { 
-  double error_generado = 0;
+  double error_generated = 0;
   
-  double angulo_actual = getAngleBNOX();
-  if (angulo_actual >= 180) {
-    error_generado = (360 - angulo_actual);
+  double current_angle = getAngleBNOX();
+  if (current_angle >= 180) {
+    error_generated = (360 - current_angle);
   }
   
   else {
-    error_generado = angulo_actual;
-    error_generado = -(error_generado);
+    error_generated = current_angle;
+    error_generated = -(error_generated);
   }
   
-  return error_generado;
+  return error_generated;
 }
 
 double Control::getAngleBNOX() { 
@@ -136,11 +136,11 @@ double Control::getAngleBNOZ() {
 }
 
 double Control::getDesiredAngle(double desire) {
-  double diferencia_inicial = 0; 
-  double angulo_actual = getAngleBNOX();
+  double initial_difference = 0; 
+  double current_angle = getAngleBNOX();
   
-  if (angulo_actual > 180) {
-    desire = desire - diferencia_inicial;
+  if (current_angle > 180) {
+    desire = desire - initial_difference;
     if (desire < 0) {
       desire += 360;
     }
@@ -151,14 +151,14 @@ double Control::getDesiredAngle(double desire) {
     
   }
   else {
-    desire = desire - diferencia_inicial;
+    desire = desire - initial_difference;
   }
   
   return desire;
 }
 
-double Control::getError(const double angulo_actual, const double desire){
-  double error = desire - angulo_actual;
+double Control::getError(const double current_angle, const double desire){
+  double error = desire - current_angle;
   
   if (error < -180) {
      error += 360;
@@ -213,10 +213,10 @@ bool Control::checkWallsRight() {
   double current_distance_right_up = getDistanceRightUp();
   double current_distance_right_down = getDistanceRightDown();
   if (current_distance_right_up < 15 and current_distance_right_down < 15) {
-    return true
+    return true;
   }
   else if (current_distance_right_up > 15 || current_distance_right_down > 15) {
-    return false
+    return false;
   }
 }
 
@@ -224,10 +224,10 @@ bool Control::checkWallsLeft() {
   double current_distance_left_up = getDistanceLeftUp();
   double current_distance_left_down = getDistanceLeftDown();
   if (current_distance_left_up < 15 and current_distance_left_down < 15) {
-    return true
+    return true;
   }
   else if (current_distance_left_up > 15 || current_distance_left_down > 15) {
-    return false
+    return false;
   }
 }
 
@@ -299,11 +299,11 @@ void Control::turnRight(const uint8_t vel) {
 void Control::turnDegrees(double desire) {
   double vel = 0;
   double error = 0;
-  double angulo_actual = getAngleBNOX();
+  double current_angle = getAngleBNOX();
   desire = getDesiredAngle(desire);
   
   do{
-    error = getError(angulo_actual, desire);
+    error = getError(current_angle, desire);
     Serial.println(error);
     vel = kP * error;
     
